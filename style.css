@@ -14,7 +14,7 @@ nav {
 ul {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: 67px;
     list-style-type: none;
     font-family: "Varela", sans-serif;
     font-size: 1.2rem;
@@ -23,12 +23,28 @@ ul {
 li {
     padding: 0rem 1.1rem;
 }
-.home_icon > img {
-    width: 44px;
-    height: auto;
-}
 .home_icon {
+    display: flex;
+    align-items: center;
     font-family: "Varela", sans-serif;
     font-size: 1.5rem;
     font-weight: bolder;
+}
+.home_icon > img {
+    width: 44px;
+    padding-right: 5px;
+}
+.container {
+    height: 70vh;
+}
+.footer {
+    position: sticky;
+    height: 75px;
+    background-color: coral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#songProgress {
+    width: 50vw;
 }
