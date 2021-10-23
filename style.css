@@ -35,10 +35,20 @@ li {
     padding-right: 5px;
 }
 .container {
-    height: 70vh;
+    height: 75vh;
+    color: bisque;
+    font-size: 1.2rem;
+    background-color: black;
+    display: flex;
+    width: 75%;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 34px;
 }
+
 .footer {
     position: sticky;
+    bottom: 0;
     height: 90px;
     background-color: coral;
     color: antiquewhite;
@@ -47,12 +57,65 @@ li {
     align-items: center;
     flex-direction: column;
 }
+
+.footer input {
+    margin-top: 0.5rem;
+}
+
 .iconPlaying {
-    min-height: 50px;
+    min-height: 40px;
+    margin-top: 0.5rem;
 }
 .iconPlaying i {
     cursor: pointer;
 }
+.iconPlaying i:hover {
+    color: black;
+}
+
 #songProgress {
     width: 50vw;
+}
+.songItemContainer {
+    margin-top: 55px;
+}
+
+.songItem {
+    height: 50px;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: antiquewhite;
+    display: flex;
+    margin: 12px 0;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.songItem img {
+    width: 2.8rem;
+    /* margin: 0 10px; */
+}
+
+.songItem .songIcon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.songItem .timeStamp {
+    margin-right: 10px;
+}
+
+.songPlayinGif {
+    position: absolute;
+    left: 12vw;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+.songPlayinGif img {
+    width: 70px;
+}
+.songPlayinGif span {
+    font-size: 1.3rem;
 }
