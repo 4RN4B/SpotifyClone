@@ -11,13 +11,13 @@
 </head>
 
 <body>
-    <nav>
+    <div class="nav">
         <ul>
             <li class="home_icon"><img src="logo.png" alt="Logo">Spotify</li>
             <li>Home</li>
             <li>Songs</li>
         </ul>
-    </nav>
+    </div>
 
     <div class="container">
         <div class="rightBanner">
@@ -71,6 +71,12 @@
                     <span>Let me love you</span>
                     <span class="timeStamp">05:34</span>
                 </div>
+                <div class="songItem">
+                    <span class="songIcon"><i class="material-icons">play_arrow</i></span>
+                    <img src="covers/7.jpg" alt="1">
+                    <span>Let me love you</span>
+                    <span class="timeStamp">05:34</span>
+                </div>
             </div>
         </div>
         <div class="songList">
@@ -85,15 +91,16 @@
         </div>
         <input type="range" name="range" id="songProgress" min="0" max="100">
         <div class="iconPlaying">
-            <!-- <i class="fa-2x fas fa-step-backward"></i>
-            <i class="fa-2x far fa-play-circle"></i>
-            <i class="fa-2x fas fa-step-forward"></i> -->
-            <i class="large material-icons">navigate_before</i>
-            <i class="large material-icons">play_arrow</i>
-            <i class="large material-icons">navigate_next</i>
+            <i class="fa-2x fas fa-step-backward"></i>
+            <i class="fa-2x far fa-play-circle" id="mainPlay"></i>
+            <i class="fa-2x fas fa-step-forward"></i>
+            <!-- <i class="large material-icons">navigate_before</i>
+            <i class="large material-icons" id="mainPlay">play_arrow</i>
+            <i class="large material-icons">navigate_next</i> -->
         </div>
     </div>
-
+    <script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
