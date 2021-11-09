@@ -114,7 +114,7 @@ li {
     position: absolute;
     left: 12vw;
     opacity: 0;
-    transition: opacity 1s ease-in;
+    transition: opacity 0.8s ease-in;
 }
 .songPlayinGif img {
     width: 70px;
