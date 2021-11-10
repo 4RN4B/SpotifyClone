@@ -6,61 +6,67 @@ let mainPlay = document.getElementById("mainPlay");
 let audioElement = new Audio("songs/1.mp3");
 let songProgress = document.getElementById("songProgress");
 let songPlayinGif = document.getElementsByClassName("songPlayinGif");
+let songItem = Array.from(document.getElementsByClassName("songItem"));
+// console.log(songItem);
 let songs = [
     {
-        songName: "Warriyo - Mortals [NCS Release]",
+        songName: "Warriyo - Mortals",
         filepath: "songs/1.mp3",
-        coverpath: "covers/1.mp3",
+        coverpath: "covers/1.jpg",
     },
     {
         songName: "Cielo - Huma-Huma",
         filepath: "songs/2.mp3",
-        coverpath: "covers/2.mp3",
+        coverpath: "covers/2.jpg",
     },
     {
-        songName: "DEAF KEV - Invincible [NCS Release]-320k",
+        songName: "DEAF KEV - Invincible",
         filepath: "songs/3.mp3",
-        coverpath: "covers/3.mp3",
+        coverpath: "covers/3.jpg",
     },
     {
-        songName: "Different Heaven & EH!DE - My Heart [NCS Release]",
+        songName: "My Heart",
         filepath: "songs/4.mp3",
-        coverpath: "covers/4.mp3",
+        coverpath: "covers/4.jpg",
     },
     {
-        songName: "Janji-Heroes-Tonight-feat-Johnning-NCS-Release",
+        songName: "Janji-Heroes-Tonight",
         filepath: "songs/5.mp3",
-        coverpath: "covers/5.mp3",
+        coverpath: "covers/5.jpg",
     },
     {
         songName: "Sakhiyaan - Salam-e-Ishq",
         filepath: "songs/6.mp3",
-        coverpath: "covers/6.mp3",
+        coverpath: "covers/6.jpg",
     },
     {
         songName: "Bhula Dena - Salam-e-Ishq",
         filepath: "songs/7.mp3",
-        coverpath: "covers/7.mp3",
+        coverpath: "covers/7.jpg",
     },
     {
-        songName: "Tumhari Kasam - Salam-e-Ishq",
+        songName: "Tumhari Kasam",
         filepath: "songs/8.mp3",
-        coverpath: "covers/8.mp3",
+        coverpath: "covers/8.jpg",
     },
     {
         songName: "Na Jaana - Salam-e-Ishq",
         filepath: "songs/9.mp3",
-        coverpath: "covers/9.mp3",
+        coverpath: "covers/9.jpg",
     },
     {
         songName: "Na Jaana - Salam-e-Ishq",
         filepath: "songs/10.mp3",
-        coverpath: "covers/10.mp3",
+        coverpath: "covers/10.jpg",
     },
 ];
 
-//
-
+// Changing the name and covers of the songlist
+songItem.forEach((element, i) => {
+    // console.log(element, i);
+    element.getElementsByTagName("img")[0].src = songs[i].coverpath;
+    element.getElementsByTagName("span")[1].innerText = songs[i].songName;
+});
 // Handle play/pause click
 mainPlay.addEventListener("click", () => {
     if (audioElement.paused || audioElement.currentTime <= 0) {
@@ -97,4 +103,60 @@ songProgress.addEventListener("change", () => {
     //songProgress.value is now in percentage so changing it to duration
     audioElement.currentTime =
         (songProgress.value * audioElement.duration) / 100;
+});
+
+const makeallPlay = () => {
+    Array.from(document.getElementsByClassName("songItemPlay")).forEach(
+        (element) => {
+            element.classList.remove("fa-pause-circle");
+            element.classList.add("fa-play-circle");
+        }
+    );
+};
+
+// If the play button berfore the song name is pressed the song will play and the button will change to pause button
+Array.from(document.getElementsByClassName("songItemPlay")).forEach(
+    (element) => {
+        element.addEventListener("click", (e) => {
+            makeallPlay(); //when a play button is clicked then the previous pause button will change to play
+            // console.log(e); // e is to get the element which is clicked from the whole array of element
+            // here we have used e because we want to change that specific element only not all the elements.
+            songIndex = parseInt(e.target.id); // Given id 0 to 9 in html gives us the value of which song's play button is pressed.
+            e.target.classList.remove("fa-play-circle");
+            e.target.classList.add("fa-pause-circle");
+            audioElement.src = `songs/${songIndex + 1}.mp3`; // Clicked song will be played
+            audioElement.currentTime = 0;
+            audioElement.play();
+            mainPlay.classList.remove("fa-play-circle");
+            mainPlay.classList.add("fa-pause-circle");
+        });
+    }
+);
+
+//If someone clicked the next button
+document.getElementById("next").addEventListener("click", () => {
+    if (songIndex > 9) {
+        songIndex = 0;
+    } else {
+        songIndex += 1;
+    }
+    audioElement.src = `songs/${songIndex + 1}.mp3`; // Clicked song will be played
+    audioElement.currentTime = 0;
+    audioElement.play();
+    mainPlay.classList.remove("fa-play-circle");
+    mainPlay.classList.add("fa-pause-circle");
+});
+
+//If someone clicked the previous button
+document.getElementById("previous").addEventListener("click", () => {
+    if (songIndex < 0) {
+        songIndex = 0;
+    } else {
+        songIndex += 1;
+    }
+    audioElement.src = `songs/${songIndex + 1}.mp3`; // Clicked song will be played
+    audioElement.currentTime = 0;
+    audioElement.play();
+    mainPlay.classList.remove("fa-play-circle");
+    mainPlay.classList.add("fa-pause-circle");
 });

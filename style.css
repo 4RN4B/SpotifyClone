@@ -77,7 +77,7 @@ li {
 }
 
 #songProgress {
-    width: 50vw;
+    width: 80vw;
 }
 .songItemContainer {
     margin-top: 55px;
@@ -121,4 +121,5 @@ li {
 }
 .songPlayinGif span {
     font-size: 1.3rem;
+    color: black;
 }
