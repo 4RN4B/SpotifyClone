@@ -61,6 +61,16 @@ let songs = [
     },
 ];
 
+//to make all the pause buttons before the song list change to play button
+const makeallPlay = () => {
+    Array.from(document.getElementsByClassName("songItemPlay")).forEach(
+        (element) => {
+            element.classList.remove("fa-pause-circle");
+            element.classList.add("fa-play-circle");
+        }
+    );
+};
+
 // Changing the name and covers of the songlist
 songItem.forEach((element, i) => {
     // console.log(element, i);
@@ -79,7 +89,13 @@ mainPlay.addEventListener("click", () => {
         // }
         //Here we know the array is of 1 length as only one place this class name is used so
         songPlayinGif[0].style.opacity = 1;
+        let iconChange = document.getElementById(songIndex);
+        // console.log(document.getElementById(songIndex));
+        // console.log(iconChange.classList);
+        iconChange.classList.remove("fa-play-circle");
+        iconChange.classList.add("fa-pause-circle");
     } else {
+        makeallPlay();
         audioElement.pause(); // To pause Audio
         mainPlay.classList.remove("fa-pause-circle"); //For removing the play button
         mainPlay.classList.add("fa-play-circle"); //For changing it to pause button
@@ -105,15 +121,6 @@ songProgress.addEventListener("change", () => {
         (songProgress.value * audioElement.duration) / 100;
 });
 
-const makeallPlay = () => {
-    Array.from(document.getElementsByClassName("songItemPlay")).forEach(
-        (element) => {
-            element.classList.remove("fa-pause-circle");
-            element.classList.add("fa-play-circle");
-        }
-    );
-};
-
 // If the play button berfore the song name is pressed the song will play and the button will change to pause button
 Array.from(document.getElementsByClassName("songItemPlay")).forEach(
     (element) => {
@@ -138,7 +145,7 @@ Array.from(document.getElementsByClassName("songItemPlay")).forEach(
 
 //If someone clicked the next button
 document.getElementById("next").addEventListener("click", () => {
-    if (songIndex > 9) {
+    if (songIndex >= 9) {
         songIndex = 0;
     } else {
         songIndex += 1;
@@ -151,14 +158,20 @@ document.getElementById("next").addEventListener("click", () => {
     songPlayinGif[0].style.opacity = 1;
     mainPlay.classList.remove("fa-play-circle");
     mainPlay.classList.add("fa-pause-circle");
+    makeallPlay();
+    let iconChange = document.getElementById(songIndex);
+    // console.log(document.getElementById(songIndex));
+    // console.log(iconChange.classList);
+    iconChange.classList.remove("fa-play-circle");
+    iconChange.classList.add("fa-pause-circle");
 });
 
 //If someone clicked the previous button
 document.getElementById("previous").addEventListener("click", () => {
-    if (songIndex < 0) {
+    if (songIndex <= 0) {
         songIndex = 0;
     } else {
-        songIndex += 1;
+        songIndex -= 1;
     }
     audioElement.src = `songs/${songIndex + 1}.mp3`; // Clicked song will be played
     document.getElementById("mainSongPlaying").innerText =
@@ -168,4 +181,10 @@ document.getElementById("previous").addEventListener("click", () => {
     songPlayinGif[0].style.opacity = 1;
     mainPlay.classList.remove("fa-play-circle");
     mainPlay.classList.add("fa-pause-circle");
+    makeallPlay();
+    let iconChange = document.getElementById(songIndex);
+    // console.log(document.getElementById(songIndex));
+    // console.log(iconChange.classList);
+    iconChange.classList.remove("fa-play-circle");
+    iconChange.classList.add("fa-pause-circle");
 });
